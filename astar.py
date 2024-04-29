@@ -1,8 +1,7 @@
 import heapq
-from heuristics import euclidean_heuristic
+from heuristics import euclidean_heuristic, mixed_heuristic
 import torch
-from neural_astar.planner import NeuralAstar, VanillaAstar
-from neural_astar.utils.training import load_from_ptl_checkpoint
+
 
 
 def astar(start, goal, roadmap):
@@ -17,10 +16,10 @@ def astar(start, goal, roadmap):
             break
 
         for neighbor in roadmap[current]:
-            new_cost = cost_so_far[current] + euclidean_heuristic(neighbor, current)
+            new_cost = cost_so_far[current] + euclidean_heuristic(neighbor, current, epsilon=0.1)
             if neighbor not in cost_so_far or new_cost < cost_so_far.get(neighbor, float('inf')):
                 cost_so_far[neighbor] = new_cost
-                priority = new_cost + euclidean_heuristic(goal, neighbor)
+                priority = new_cost + euclidean_heuristic(goal, neighbor, epsilon=0.1)
                 heapq.heappush(frontier, (priority, neighbor))
                 came_from[neighbor] = current
 
@@ -29,8 +28,3 @@ def astar(start, goal, roadmap):
         path.append(came_from[path[-1]])
     path.reverse()
     return path
-
-
-
-def neural_astar(start, goal, roadmap):
-    pass

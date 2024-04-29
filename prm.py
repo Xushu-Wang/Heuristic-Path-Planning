@@ -67,9 +67,9 @@ def PRM(start, goal, map_size, obstacle_map, num_points, k):
     roadmap = build_roadmap(tuple(start), tuple(goal), map_size, obstacle_map, num_points, k)
     algo_end = time.time()
 
+    optimal_path = astar(tuple(start), tuple(goal), roadmap)
     print("The algorithm takes: ", algo_end - algo_start)
 
-    optimal_path = astar(tuple(start), tuple(goal), roadmap)
 
     min_dist = euclidean_heuristic(start, goal)
 
@@ -77,7 +77,7 @@ def PRM(start, goal, map_size, obstacle_map, num_points, k):
 
     normalized_ratio = path_dist/min_dist
 
-    return optimal_path, normalized_ratio
+    return roadmap, optimal_path, normalized_ratio
 
 
 
@@ -85,11 +85,10 @@ def PRM_star(start, goal, map_size, obstacle_map, num_points, k):
     
     algo_start = time.time()
     roadmap = build_roadmap(tuple(start), tuple(goal), map_size, obstacle_map, num_points, k, reconnect=True)
-    algo_end = time.time()
-
-    print("The algorithm takes: ", algo_end - algo_start)
 
     optimal_path = astar(tuple(start), tuple(goal), roadmap)
+    algo_end = time.time()
+    print("The algorithm takes: ", algo_end - algo_start)
 
     min_dist = euclidean_heuristic(start, goal)
 
@@ -97,7 +96,7 @@ def PRM_star(start, goal, map_size, obstacle_map, num_points, k):
 
     normalized_ratio = path_dist/min_dist
 
-    return optimal_path, normalized_ratio
+    return roadmap, optimal_path, normalized_ratio
 
 
 

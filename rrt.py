@@ -1,4 +1,5 @@
 import numpy as np
+import time
 from heuristics import path_distance, euclidean_heuristic
 
 class Node:
@@ -46,6 +47,7 @@ def rewire(node_list, new_node, max_distance, obstacle_map):
                   
 
 def rrt_star(start, goal, map_size, obstacle_map, max_iter, max_distance):
+    algo_start = time.time()
     node_list = [Node(start)]
 
     for _ in range(max_iter):
@@ -90,5 +92,9 @@ def rrt_star(start, goal, map_size, obstacle_map, max_iter, max_distance):
     path_dist = path_distance(path)
     min_dist = euclidean_heuristic(start, goal)
     normalized_ratio = path_dist/min_dist
+    
+    algo_end = time.time()
+
+    print("The algorithm takes: ", algo_end - algo_start)
 
     return path, normalized_ratio
