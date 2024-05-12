@@ -4,6 +4,11 @@
 
 Heuristic Path Planning is a comprehensive Python repository dedicated to exploring various heuristic algorithms for automated path planning. Developed as a Course Project for CS 634 (Geometric Algorithms), this project implements a diverse set of algorithms to solve path planning problems, leveraging the power of heuristics to optimize solutions.
 
+<div align="center">
+<img width="438" alt="result3" src="https://github.com/Xushu-Wang/Heuristic-Path-Planning/assets/84580259/cc353241-8699-4c07-887e-dd3506fb817a">
+</div>
+
+
 ### Core Features:
 
 - **A\* Algorithm**: An implementation of the classic pathfinding and graph traversal algorithm, optimized with custom heuristics.
